@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SustainableAIoT-Afrasia · IEEE AIoT 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#12386B;
+    --blue-deep:#0B274D;
+    --blue-mid:#2E5C9A;
+    --gold:#C98A2C;
+    --ink:#1F2733;
+    --ink-soft:#5A6473;
+    --line:#DEE3EA;
+    --bg:#FFFFFF;
+    --bg-alt:#F5F7FA;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Source Sans 3', Arial, sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    font-size:16px;
+    line-height:1.65;
+  }
+  h1,h2,h3,h4{font-family:'Source Serif 4', Georgia, serif; color:var(--blue-deep); font-weight:600;}
+  a{color:var(--blue-mid);}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 24px;}
+
+  /* top identity bar */
+  .topbar{background:var(--blue-deep); color:#fff; font-size:13px; padding:7px 0;}
+  .topbar .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px;}
+  .topbar a{color:#CFE0F5; text-decoration:none;}
+
+  /* banner */
+  .banner{
+    background:
+      linear-gradient(180deg, rgba(11,39,77,0.82) 0%, rgba(11,39,77,0.90) 100%),
+      url('main.png');
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    color:#fff; padding:60px 0 46px; border-bottom:4px solid var(--gold);
+  }
+  .banner .conf-line{font-size:14px; color:#BFD3EC; letter-spacing:0.02em; margin-bottom:10px;}
+  .banner h1{color:#fff; font-size:clamp(26px,3.4vw,36px); line-height:1.25; max-width:900px;}
+  .banner .subtitle{color:#DCE7F5; font-size:16px; margin-top:8px; max-width:760px;}
+  .banner .meta-row{
+    margin-top:22px; display:flex; flex-wrap:wrap; gap:22px; font-size:14px; color:#EAF1FA;
+  }
+  .banner .meta-row span{display:flex; align-items:center; gap:6px;}
+
+  /* nav */
+  nav.tabs{
+    background:var(--bg-alt); border-bottom:1px solid var(--line);
+    position:sticky; top:0; z-index:40;
+  }
+  nav.tabs .wrap{display:flex; gap:2px; overflow-x:auto;}
+  nav.tabs a{
+    display:block; padding:13px 16px; font-size:14px; font-weight:600; color:var(--blue-deep);
+    text-decoration:none; white-space:nowrap; border-bottom:3px solid transparent;
+  }
+  nav.tabs a:hover{border-bottom-color:var(--gold); background:#EEF2F7;}
+
+  section{padding:50px 0;}
+  section.alt{background:var(--bg-alt);}
+  h2.sec-title{
+    font-size:23px; padding-bottom:10px; border-bottom:2px solid var(--blue);
+    margin-bottom:22px; display:inline-block;
+  }
+  .sec-head{margin-bottom:8px;}
+  p.lede{color:var(--ink-soft); max-width:820px; margin-bottom:16px; font-size:15.5px;}
+
+  /* overview */
+  .overview-body p{margin-bottom:14px; max-width:880px; font-size:15.5px;}
+
+  .pos-table{width:100%; border-collapse:collapse; margin-top:18px; font-size:14px; max-width:820px;}
+  .pos-table th{background:var(--blue); color:#fff; text-align:left; padding:9px 12px; font-weight:600; font-size:13px;}
+  .pos-table td{padding:9px 12px; border-bottom:1px solid var(--line);}
+  .pos-table td:not(:first-child), .pos-table th:not(:first-child){text-align:center;}
+  .pos-table tr:nth-child(even) td{background:var(--bg-alt);}
+
+  /* topics */
+  .topics-list{columns:2; column-gap:40px; margin-top:8px; max-width:940px;}
+  @media(max-width:680px){.topics-list{columns:1;}}
+  .topics-list .topic-item{break-inside:avoid; margin-bottom:16px;}
+  .topics-list h4{font-size:15px; font-family:'Source Sans 3'; color:var(--blue-deep); margin-bottom:3px; font-weight:700;}
+  .topics-list p{font-size:13.8px; color:var(--ink-soft);}
+
+  /* CFP / categories table */
+  .cat-table{width:100%; border-collapse:collapse; margin-top:16px; max-width:760px; font-size:14.5px;}
+  .cat-table th{text-align:left; padding:9px 4px; border-bottom:2px solid var(--blue); color:var(--blue-deep); font-size:13px;}
+  .cat-table td{padding:9px 4px; border-bottom:1px solid var(--line);}
+
+  /* dates */
+  .dates-table{width:100%; max-width:640px; border-collapse:collapse; margin-top:18px; font-size:14.5px;}
+  .dates-table td{padding:10px 4px; border-bottom:1px solid var(--line);}
+  .dates-table td:first-child{font-weight:700; color:var(--blue-deep); width:190px; font-variant-numeric:tabular-nums;}
+  .dates-table tr:last-child td{color:var(--gold); font-weight:700;}
+
+  /* schedule */
+  .schedule-table{width:100%; border-collapse:collapse; margin-top:18px; font-size:14.5px; max-width:820px;}
+  .schedule-table th{background:var(--blue); color:#fff; text-align:left; padding:9px 14px; font-size:13px;}
+  .schedule-table td{padding:10px 14px; border-bottom:1px solid var(--line);}
+  .schedule-table td:first-child{font-weight:600; color:var(--blue-deep); white-space:nowrap; width:130px;}
+  .schedule-table tr:nth-child(even) td{background:var(--bg-alt);}
+
+  .award-list{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px;}
+  .award-list span{
+    font-size:13.5px; background:#fff; border:1px solid var(--line); border-left:4px solid var(--gold);
+    padding:8px 14px; border-radius:2px;
+  }
+
+  /* people grid (speakers + organizers) */
+  .people-grid{
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:26px 20px; margin-top:8px;
+  }
+  @media(max-width:900px){.people-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:480px){.people-grid{grid-template-columns:1fr;}}
+  .person{text-align:left;}
+  .avatar{
+    width:100%; aspect-ratio:1/1; border-radius:4px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Source Serif 4'; font-weight:600; font-size:28px; color:#fff;
+    margin-bottom:10px; border:1px solid var(--line);
+  }
+  .person h4{font-size:15px; font-family:'Source Sans 3'; color:var(--ink); font-weight:700; margin-bottom:2px;}
+  .person .role{font-size:12px; color:var(--gold); font-weight:700; text-transform:uppercase; letter-spacing:0.03em; margin-bottom:3px;}
+  .person .affil{font-size:12.8px; color:var(--ink-soft); margin-bottom:6px; line-height:1.4;}
+  .person .bio{font-size:12.5px; color:var(--ink-soft); line-height:1.5;}
+  .person .country{font-size:11.5px; color:var(--blue-mid); font-weight:600; margin-top:6px; display:block;}
+
+  .sub-head{font-size:16px; color:var(--blue-deep); margin:30px 0 4px; font-family:'Source Serif 4'; font-weight:600;}
+
+  /* sponsors / registration */
+  .info-cols{display:grid; grid-template-columns:1fr 1fr 1fr; gap:30px; margin-top:10px;}
+  @media(max-width:820px){.info-cols{grid-template-columns:1fr;}}
+  .info-cols h4{font-size:15px; color:var(--blue-deep); margin-bottom:8px;}
+  .info-cols p{font-size:14px; color:var(--ink-soft);}
+
+  /* CFP appendix box */
+  .cfp-box{
+    background:#fff; border:1px solid var(--line); border-top:4px solid var(--blue);
+    padding:26px 30px; margin-top:18px; max-width:900px;
+  }
+  .cfp-box h3{font-size:19px; margin-bottom:10px;}
+  .cfp-box p{font-size:14.5px; color:var(--ink-soft); margin-bottom:10px;}
+  .cfp-box .organizers-line{font-size:13.5px; color:var(--ink-soft); margin-top:14px;}
+  .cfp-box .organizers-line b{color:var(--ink);}
+
+  .submit-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--gold); color:#1F2733; font-weight:700; font-size:14px;
+    padding:10px 20px; border-radius:3px; text-decoration:none;
+    box-shadow:0 2px 6px rgba(201,138,44,0.35);
+    animation:pulse-glow 2.4s ease-in-out infinite;
+  }
+  .topbar .submit-cta{color:#1F2733;}
+  .submit-cta:hover{background:#DE9C3C;}
+  @keyframes pulse-glow{
+    0%,100%{box-shadow:0 2px 6px rgba(201,138,44,0.35);}
+    50%{box-shadow:0 2px 14px rgba(201,138,44,0.75);}
+  }
+  @media (prefers-reduced-motion: reduce){ .submit-cta{animation:none;} }
+
+  .submit-strip{
+    background:#FFF6E6; border-top:1px solid #F0D8A8; border-bottom:1px solid #F0D8A8;
+    padding:14px 0; text-align:center;
+  }
+  .submit-strip .wrap{display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap;}
+  .submit-strip span.label{font-size:14px; color:var(--ink);}
+
+  footer{background:var(--blue-deep); color:#CFE0F5; padding:32px 0; font-size:13.5px;}
+  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;}
+  footer a{color:#fff;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>IEEE Annual Congress on Artificial Intelligence of Things (IEEE AIoT) 2026 — Kobe, Japan</span>
+    <a href="https://openreview.net/group?id=IEEE.org/AIoT/2026/Workshop/SustainableAIoT-Afrasia" target="_blank" rel="noopener" class="submit-cta">📝 Submit on OpenReview →</a>
+  </div>
+</div>
+
+<div class="banner">
+  <div class="wrap">
+    <div class="conf-line">A Workshop at IEEE AIoT 2026</div>
+    <h1>SustainableAIoT-Afrasia: Sustainable AIoT for AfroAsian Communities</h1>
+    <div class="subtitle">Edge Intelligence for Resource-Constrained, Climate-Vulnerable Regions</div>
+    <div class="meta-row">
+      <span>🗓 14–16 December 2026</span>
+      <span>⏰ 08:00 – 17:00 (full-day track)</span>
+      <span>📍 Kobe, Japan</span>
+      <span>✉ prakrit@iimj.ac.in · hitika@iitmz.ac.in</span>
+    </div>
+  </div>
+</div>
+
+<div class="submit-strip">
+  <div class="wrap">
+    <span class="label">📄 Now accepting submissions — deadline <b>30 September 2026 (AoE)</b></span>
+    <a href="https://openreview.net/group?id=IEEE.org/AIoT/2026/Workshop/SustainableAIoT-Afrasia" target="_blank" rel="noopener" class="submit-cta">📝 Submit on OpenReview →</a>
+  </div>
+</div>
+
+<nav class="tabs">
+  <div class="wrap">
+    <a href="#overview">Overview</a>
+    <a href="#topics">Topics</a>
+    <a href="#cfp-cat">Call for Papers</a>
+    <a href="#dates">Important Dates</a>
+    <a href="#program">Program</a>
+    <a href="#speakers">Speakers</a>
+    <a href="#organizers">Organizers</a>
+    <a href="#sponsors">Registration &amp; Sponsors</a>
+    <a href="#cfp">Full CFP</a>
+  </div>
+</nav>
+
+<section id="overview">
+  <div class="wrap">
+    <h2 class="sec-title">Overview</h2>
+    <div class="overview-body">
+      <p>IoT sensor deployment is growing faster across Africa and South/Southeast Asia than in any other region, driven by low-cost hardware and mobile connectivity — yet the machine learning methods used to interpret this data are still largely designed and validated under grid-connected, high-bandwidth assumptions.</p>
+      <p>The consequences are direct: precision-agriculture systems that assume continuous connectivity fail during the drought or flood events they are meant to help manage; health-monitoring models trained on curated Global-North cohorts underperform on the populations that most need low-cost diagnostics; and cloud-dependent inference pipelines are unusable in off-grid or intermittently-powered settings. Researchers addressing these problems across the two continents are also frequently siloed by region, despite facing near-identical technical constraints in power, connectivity, and hardware heterogeneity.</p>
+      <p>This workshop treats African and Asian communities not only as deployment sites, but as sources of technical innovation, locally grounded knowledge, and new system-design principles — from disruption-tolerant field networks to frugal-hardware engineering practice — that can inform AIoT research globally. We adopt a broad, engineering-grounded notion of sustainability: beyond energy and carbon efficiency, this includes affordability, operational resilience, repairability, secure maintainability, and the local capacity to operate and improve AIoT systems over the long term.</p>
+
+      <div class="sub-head">Objectives</div>
+      <p>(1) provide a peer-reviewed technical venue for AIoT research explicitly grounded in resource-constrained, climate-vulnerable deployment contexts; (2) bridge Africa- and Asia-based research communities that currently publish in largely separate local venues despite shared technical constraints; (3) connect academic contributions with working field deployments via a dedicated demo track; and (4) build sustained mentorship pathways for early-career researchers from underrepresented institutions.</p>
+
+      <div class="sub-head">Relation to prior workshops</div>
+      <p>TinyML/Efficient-ML workshops address model compression and on-device inference generally, without a deployment-context framing. AI-for-Social-Good and climate-focused workshops address application domains but rarely center systems-level constraints (power, connectivity, security, hardware lifecycle). Global-South affinity groups focus on representation and mentorship rather than a specific technical agenda. SustainableAIoT-Afrasia is complementary — organized around a specific technical problem set, with Africa and Asia as its shared empirical and deployment context.</p>
+
+      <table class="pos-table">
+        <thead><tr><th>Venue type</th><th>Region focus</th><th>Peer review</th><th>Demo / mentor</th></tr></thead>
+        <tbody>
+          <tr><td>TinyML / Efficient-ML</td><td>—</td><td>✓</td><td>~</td></tr>
+          <tr><td>AI-for-Social-Good / climate</td><td>~</td><td>✓</td><td>~</td></tr>
+          <tr><td>Global-South affinity groups</td><td>✓</td><td>—</td><td>✓</td></tr>
+          <tr><td><b>This workshop</b></td><td>✓</td><td>✓</td><td>✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="topics" class="alt">
+  <div class="wrap">
+    <h2 class="sec-title">Topics of Interest</h2>
+    <p class="lede">Topics include, but are not limited to:</p>
+    <div class="topics-list">
+      <div class="topic-item"><h4>Efficient &amp; edge ML</h4><p>Compression, pruning, quantization, distillation, NAS for microcontrollers, TinyML, coreset selection, data-efficient training.</p></div>
+      <div class="topic-item"><h4>Sustainable &amp; energy-aware learning</h4><p>Carbon/energy-aware training and inference, solar/battery-constrained scheduling, hardware–software co-design for low-power sensing.</p></div>
+      <div class="topic-item"><h4>Distributed &amp; on-device learning</h4><p>Federated learning over heterogeneous, intermittently-connected devices; split computing; continual learning under drift.</p></div>
+      <div class="topic-item"><h4>Resilient networking, security &amp; lifecycle management</h4><p>Disruption-tolerant and intermittent networking, LPWAN and mesh networks, satellite/opportunistic connectivity, secure provisioning, firmware/model updates, long-term maintenance.</p></div>
+      <div class="topic-item"><h4>Sensing &amp; perception for AIoT</h4><p>Low-cost sensor fusion, robust perception under noisy hardware, remote-sensing/satellite-edge co-design.</p></div>
+      <div class="topic-item"><h4>Domain applications</h4><p>Precision agriculture, inclusive livelihoods, accessible learning ecosystems, water and energy management, climate/disaster early warning, low-resource healthcare, smart mobility.</p></div>
+      <div class="topic-item"><h4>Human-centered &amp; multilingual interfaces</h4><p>Low-literacy interaction design, participatory data collection, community-in-the-loop deployment.</p></div>
+      <div class="topic-item"><h4>Data governance</h4><p>Cross-border data sovereignty, privacy-preserving analytics, fairness and robustness under regional distribution shift.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="cfp-cat">
+  <div class="wrap">
+    <h2 class="sec-title">Submission Categories</h2>
+    <p class="lede">Non-archival. Double-blind review via <a href="https://openreview.net/group?id=IEEE.org/AIoT/2026/Workshop/SustainableAIoT-Afrasia" target="_blank" rel="noopener">OpenReview</a> by a Program Committee spanning Africa, Asia, and collaborating regions; each submission receives at least two reviews.</p>
+    <table class="cat-table">
+      <thead><tr><th>Category</th><th>Length</th></tr></thead>
+      <tbody>
+        <tr><td>Research extended abstracts</td><td>4–6 pages</td></tr>
+        <tr><td>Deployment / experience reports</td><td>2–4 pages</td></tr>
+        <tr><td>Demo proposals</td><td>2 pages, optional short video</td></tr>
+        <tr><td>Position / vision papers</td><td>2–4 pages</td></tr>
+        <tr><td>Student posters</td><td>1–2 pages</td></tr>
+      </tbody>
+    </table>
+    <p class="lede" style="margin-top:18px;">Accepted submissions are non-archival and hosted on the workshop website; they do not conflict with IEEE AIoT 2026 main-track or other venue submissions. Accepted demo materials may be contributed to a post-workshop open dataset/benchmark repository.</p>
+
+    <div class="sub-head">Mentorship Track</div>
+    <p class="lede">Authors of accepted student submissions, and other interested early-career participants, may opt into structured mentor–mentee roundtables (1 mentor : 4–6 mentees), with an optional post-conference virtual follow-up session.</p>
+
+    <div class="sub-head">Awards</div>
+    <div class="award-list">
+      <span>🏆 Best Paper</span>
+      <span>🏆 Best Demo / Deployment</span>
+      <span>🎓 Best Student Paper</span>
+      <span>🌍 People's Choice Poster</span>
+      <span>🤝 Outstanding Mentor Recognition</span>
+    </div>
+  </div>
+</section>
+
+<section id="dates" class="alt">
+  <div class="wrap">
+    <h2 class="sec-title">Important Dates</h2>
+    <p class="lede">All deadlines are AoE (Anywhere on Earth).</p>
+    <table class="dates-table">
+      <tr><td>5 August 2026</td><td>Workshop website &amp; publicity launch</td></tr>
+      <tr><td>30 September 2026</td><td>Submission deadline</td></tr>
+      <tr><td>7 October 2026</td><td>Notification of acceptance</td></tr>
+      <tr><td>21 October 2026</td><td>Camera-ready (non-archival) submission</td></tr>
+      <tr><td>14–16 December 2026</td><td>Workshop — Kobe, Japan</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="program">
+  <div class="wrap">
+    <h2 class="sec-title">Program Schedule</h2>
+    <p class="lede">A full-day (08:00–17:00), primarily in-person program. Virtual presentation permitted only under documented exceptional circumstances (visa denial, connectivity failure).</p>
+    <table class="schedule-table">
+      <thead><tr><th>Time</th><th>Activity</th></tr></thead>
+      <tbody>
+        <tr><td>08:00–08:30</td><td>Opening &amp; framing talk</td></tr>
+        <tr><td>08:30–10:30</td><td>Keynotes (3 × 40 min + Q&amp;A)</td></tr>
+        <tr><td>10:30–11:00</td><td>Coffee break</td></tr>
+        <tr><td>11:00–12:30</td><td>Contributed spotlights</td></tr>
+        <tr><td>12:30–14:00</td><td>Lunch &amp; demo/poster session</td></tr>
+        <tr><td>14:00–14:45</td><td>Industry–academia deployment panel</td></tr>
+        <tr><td>14:45–15:30</td><td>Structured mentorship roundtables</td></tr>
+        <tr><td>15:30–17:00</td><td>Best paper/demo awards &amp; closing</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="speakers" class="alt">
+  <div class="wrap">
+    <h2 class="sec-title">Invited Keynote Speakers</h2>
+    <p class="lede">A deliberate two-by-two mix — two countries in Asia (Japan, India) and one in Africa (Tanzania) — balancing one industry keynote against three senior academic keynotes, each with a direct, hands-on IoT research or deployment track record. Keynote speakers also serve as Program Committee Advisors.</p>
+
+    <div class="people-grid">
+      <div class="person">
+        <div class="avatar" style="background:#2E5C9A;">KC</div>
+        <h4>Kashish Chawla</h4>
+        <div class="role">Industry Keynote</div>
+        <div class="affil">Associate Director, Accenture</div>
+        <p class="bio">Leads enterprise AI/IoT transformation programs; 12+ years connecting industrial IoT sensor fleets to intelligent operations.</p>
+        <span class="country">Japan</span>
+      </div>
+      <div class="person">
+        <div class="avatar" style="background:#12386B;">JN</div>
+        <h4>Jin Nakazawa</h4>
+        <div class="role">Academic Keynote</div>
+        <div class="affil">Professor, Keio University</div>
+        <p class="bio">Ubiquitous computing and IoT; edge-AI architectures and city-scale sensing infrastructures. 300+ publications.</p>
+        <span class="country">Japan</span>
+      </div>
+      <div class="person">
+        <div class="avatar" style="background:#C98A2C;">AK</div>
+        <h4>Arpan Kar</h4>
+        <div class="role">Academic Keynote</div>
+        <div class="affil">Professor, IIT Delhi</div>
+        <p class="bio">Design, adoption, and real-world impact of IoT/ICT systems. 250+ publications, h-index 74.</p>
+        <span class="country">India</span>
+      </div>
+      <div class="person">
+        <div class="avatar" style="background:#4E7A45;">RS</div>
+        <h4>Ramadhani S. Sinde</h4>
+        <div class="role">Academic Keynote</div>
+        <div class="affil">Senior Lecturer, NM-AIST</div>
+        <p class="bio">AI-enabled embedded IoT for biodiversity conservation and human–wildlife conflict mitigation in Tanzania.</p>
+        <span class="country">Tanzania</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="organizers">
+  <div class="wrap">
+    <h2 class="sec-title">Organizing Committee</h2>
+    <p class="lede">The four-person committee spans four countries across two continents and combines academic and industry-seasoned members, each with an IoT-adjacent research or systems background.</p>
+
+    <div class="people-grid">
+      <div class="person">
+        <div class="avatar" style="background:#12386B;">PS</div>
+        <h4>Prakrit Silal</h4>
+        <div class="role">General Co-Chair</div>
+        <div class="affil">Assistant Professor, IIM Jammu</div>
+        <p class="bio">IoT-enabled information systems, digital governance, and ICT4D.</p>
+        <span class="country">India</span>
+      </div>
+      <div class="person">
+        <div class="avatar" style="background:#2E5C9A;">HT</div>
+        <h4>Hitika Tiwari</h4>
+        <div class="role">General Co-Chair</div>
+        <div class="affil">Assistant Professor, IIT Madras Zanzibar Campus</div>
+        <p class="bio">Computer vision &amp; signal processing for edge/IoT sensor data. Dual PhD (NYCU Taiwan &amp; IIT Kanpur); former Research Scientist, Rakuten Group.</p>
+        <span class="country">Tanzania</span>
+      </div>
+      <div class="person">
+        <div class="avatar" style="background:#8A4B2E;">TY</div>
+        <h4>Teruaki Yokoyama</h4>
+        <div class="role">Local Arrangements &amp; Publicity Chair</div>
+        <div class="affil">Kobe Institute of Computing &amp; NICT</div>
+        <p class="bio">Internet architecture, IoT network systems, and cybersecurity. Manages SecHack365.</p>
+        <span class="country">Japan</span>
+      </div>
+      <div class="person">
+        <div class="avatar" style="background:#5E4B8A;">A</div>
+        <h4>Aparna</h4>
+        <div class="role">Publications &amp; Demo Track Chair</div>
+        <div class="affil">PhD Student, National Taiwan Ocean University</div>
+        <p class="bio">Underwater computer vision and marine sensor perception for IoT-based ocean monitoring.</p>
+        <span class="country">Taiwan</span>
+      </div>
+    </div>
+    <p class="lede" style="margin-top:22px;">Remaining Program Committee members will be published on this site and finalized by the notification date.</p>
+  </div>
+</section>
+
+<section id="sponsors" class="alt">
+  <div class="wrap">
+    <h2 class="sec-title">Registration, Travel &amp; Sponsors</h2>
+    <div class="info-cols">
+      <div>
+        <h4>Registration</h4>
+        <p>Open to all registered IEEE AIoT 2026 participants. We respectfully request up to 10 complimentary registrations for underrepresented speakers, student authors, and practitioners presenting field deployments, subject to available funding.</p>
+      </div>
+      <div>
+        <h4>Travel &amp; Financial Aid</h4>
+        <p>Details to be published alongside the Congress's Inclusion &amp; Accessibility resources. Priority will be given to students and early-career researchers from underrepresented institutions.</p>
+      </div>
+      <div>
+        <h4>Call for Sponsors</h4>
+        <p>We welcome organizations to support travel grants, awards, and workshop activities. Sponsors are recognized on the website, during the event, and in all workshop materials. Contact the organizers to discuss.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cfp">
+  <div class="wrap">
+    <h2 class="sec-title">Full Call for Papers</h2>
+    <div class="cfp-box">
+      <h3>SustainableAIoT-Afrasia 2026</h3>
+      <p><b>Sustainable AIoT for AfroAsian Communities: Edge Intelligence for Resource-Constrained, Climate-Vulnerable Regions.</b> A Workshop at the IEEE Annual Congress on Artificial Intelligence of Things (IEEE AIoT) 2026, 14–16 December 2026, Kobe, Japan.</p>
+      <p>SustainableAIoT-Afrasia invites original technical contributions on sustainable Artificial Intelligence of Things (AIoT) for resource-constrained, climate-vulnerable regions, with a particular focus on deployment contexts across Africa and Asia. Sustainability here is understood broadly — covering energy and carbon efficiency, affordability, operational resilience, repairability, secure maintainability, and local capacity to operate and evolve AIoT systems over time. We treat African and Asian communities not only as deployment sites, but as sources of technical innovation and locally grounded system-design knowledge.</p>
+      <div class="organizers-line"><b>Organizers:</b> Prakrit Silal (IIM Jammu, India), Hitika Tiwari (IIT Madras Zanzibar Campus, Tanzania), Teruaki Yokoyama (Kobe Institute of Computing, Japan), Aparna (National Taiwan Ocean University, Taiwan).</div>
+      <div class="organizers-line"><b>Contact:</b> prakrit@iimj.ac.in, hitika@iitmz.ac.in &nbsp;|&nbsp; Workshop website: <i>to be published 5 August 2026</i></div>
+      <a href="https://openreview.net/group?id=IEEE.org/AIoT/2026/Workshop/SustainableAIoT-Afrasia" target="_blank" rel="noopener" class="submit-cta" style="margin-top:18px; animation:none;">📝 Submit your paper on OpenReview →</a>
+      <p style="font-size:12.5px; color:var(--ink-soft); margin-top:8px;">(Placeholder link — replace with the live OpenReview submission page once created.)</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>SustainableAIoT-Afrasia · IEEE AIoT 2026 · Kobe, Japan</span>
+    <span><a href="mailto:prakrit@iimj.ac.in">prakrit@iimj.ac.in</a> · <a href="mailto:hitika@iitmz.ac.in">hitika@iitmz.ac.in</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
