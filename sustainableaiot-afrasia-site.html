@@ -38,8 +38,13 @@
 
   /* banner */
   .banner{
-    background:linear-gradient(180deg, var(--blue) 0%, var(--blue-deep) 100%);
-    color:#fff; padding:46px 0 34px; border-bottom:4px solid var(--gold);
+    background:
+      linear-gradient(180deg, rgba(11,39,77,0.82) 0%, rgba(11,39,77,0.90) 100%),
+      url('main.png');
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    color:#fff; padding:60px 0 46px; border-bottom:4px solid var(--gold);
   }
   .banner .conf-line{font-size:14px; color:#BFD3EC; letter-spacing:0.02em; margin-bottom:10px;}
   .banner h1{color:#fff; font-size:clamp(26px,3.4vw,36px); line-height:1.25; max-width:900px;}
@@ -185,7 +190,6 @@
 
 <div class="banner">
   <div class="wrap">
-    <img src="main.png" alt="SustainableAIoT-Afrasia workshop banner" style="width:100%; max-width:100%; height:auto; border-radius:4px; margin-bottom:26px; display:block;">
     <div class="conf-line">A Workshop at IEEE AIoT 2026</div>
     <h1>SustainableAIoT-Afrasia: Sustainable AIoT for AfroAsian Communities</h1>
     <div class="subtitle">Edge Intelligence for Resource-Constrained, Climate-Vulnerable Regions</div>
